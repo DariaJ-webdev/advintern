@@ -1,0 +1,137 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #f7f8fa;
+  border-right: 1px solid #e1e7ed;
+  display: flex;
+  flex-direction: column; 
+  padding: 24px 0;
+  position: fixed;
+  /* z-index 100 ensures it stays above content, but below the player bar (z-index 200) */
+  z-index: 100;
+}
+
+.sidebar__logo {
+  padding: 0 24px;
+  margin-bottom: 40px;
+}
+
+.sidebar__logo img {
+  width: 100%;
+  height: 40px;
+}
+
+.sidebar__top {
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --- FONT SIZE CONTROLS (Only visible on Player Page) --- */
+.sidebar__font {
+  padding: 24px;
+  margin-top: auto; /* Pushes font controls to the bottom area above footer links */
+}
+
+.sidebar__font_title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #032b41;
+}
+
+.sidebar__font_options {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 4px;
+}
+
+.font_size_btn {
+  cursor: pointer;
+  color: #032b41;
+  font-weight: 500;
+  position: relative;  
+  padding-bottom: 6px;
+  transition: color 0.2s ease;
+}
+
+.font_size_btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #2be080;
+  display: none;
+
+}
+
+.font_size_btn:hover::after {
+  display: block; 
+}
+
+
+
+/* Progression of "Aa" sizes */
+.sidebar__font_options div:nth-child(1) { font-size: 14px; }
+.sidebar__font_options div:nth-child(2) { font-size: 18px; }
+.sidebar__font_options div:nth-child(3) { font-size: 22px; }
+.sidebar__font_options div:nth-child(4) { font-size: 26px; }
+
+/* --- NAVIGATION LINKS --- */
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  color: #032b41;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 4px solid transparent;
+}
+
+.sidebar__link:hover:not(.disabled) {
+  background-color: #f0f3f5;
+}
+
+.sidebar__icon {
+  font-size: 24px;
+}
+
+.active {
+  background-color: #f0f3f5; 
+  border-left: 4px solid #2be080; 
+  color: #032b41;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* --- BOTTOM SECTION --- */
+.sidebar__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Added padding-bottom (80px) to ensure links aren't hidden behind the fixed audio player */
+  padding-bottom: 100px;
+}
+
+.sidebar__footer {
+  border-top: 1px solid #e1e7ed;
+  padding-top: 16px;
+}
+
+.app-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}

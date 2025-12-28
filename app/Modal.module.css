@@ -1,0 +1,166 @@
+.authFormContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.dividerText{
+    margin: 0 24px;
+    font-size: 14px;
+    color: #394547;
+    font-weight: 500;
+    
+}
+
+.divider:after, .divider:before {
+    content: "";
+    display: block;
+    flex-grow: 1;
+    height: 1px;
+    background: #bac8ce;
+}
+.divider:after, .divider:before{
+    content: "";
+    display: block;
+    flex-grow: 1;
+    height: 1px;
+    background: #bac8ce;
+}
+
+
+.authFormContainer h2 {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+  color:#032b41;
+  
+}
+
+.authFormContainer input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  border: 2px solid #bac1cc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.submitBtn {
+  width: 100%;
+  height: 40px;
+  background-color: #2bd97c; 
+  color: #032b41;
+  font-size:16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+
+
+.submitBtn:hover:not(:disabled) {
+    background-color: #20ba68;
+}
+
+.iconWrapper {
+    position: absolute;
+    left:16px;
+    display: flex;
+    background-color: #3a579d;
+    color: #fff;
+    
+}
+
+
+.guestBtn {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background-color:#3a579d; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  min-width: 180px;
+  font-size:16px;
+  transition: background-color .2s;
+}
+
+.guestBtn:hover {
+    background-color: #25396b !important;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3a4649;
+}
+
+.toggleViewBtn{
+    height: 40px;
+    text-align: center;
+    background-color: #f1f6f4;
+    color: #116be9;
+    width: 100%;
+    border-radius: 0 0 4px 4px;
+    font-weight: 300;
+    font-size: 16px;
+    
+}
+
+.toggleViewBtn:hover{
+  background-color: #e1e9e8;
+}
+
+
+
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(3, 43, 65, 0.7); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; 
+  cursor: default;
+}
+
+.modalContent {
+  background-color: #fff;
+  width: 100%;
+  max-width: 450px; /* Standard login modal width */
+  padding: 40px;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: modalAppear 0.3s ease-out; /* Optional subtle pop-in effect */
+}
+
+@keyframes modalAppear {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

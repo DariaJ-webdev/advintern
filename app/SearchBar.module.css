@@ -1,0 +1,230 @@
+.search__wrapper {
+  max-width: 1070px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  position: relative;
+}
+
+.search__background {
+  width: 100%;
+  border-bottom: 1px solid #e1e7ea;
+}
+
+.search__content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 340px;
+    width: 100%;
+    position: relative; 
+}
+
+.search, .search__input--wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search__input--wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  background-color: #f1f6f4;
+  border: 2px solid #e1e7ea;
+  border-radius: 8px;
+}
+
+
+.search__input {
+    flex: 1;
+    height: 40px;
+    width: 100%;
+    padding: 0 16px;
+    outline: none;
+    background-color: #f1f6f4;
+    color: #042330;
+    border: 2px solid #e1e7ea;
+}
+
+
+.search__icon--wrapper {
+  height: 100%;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 2px solid #e1e7ea;
+  color: #03314b;
+}
+
+.search__icon {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    border-left: 2px solid #e1e7ea;
+    padding-left: 8px;
+}
+
+/* this is the magnifying glass icon*/
+.search__icon svg {
+  color: #03314b;
+}
+
+/* this is the X icon*/
+.search__delete--icon {
+    cursor: pointer;
+}
+
+.search__icon--wrapper {
+  height: 100%;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #e1e7e8; /* vertical divider */
+  color: #6b757b;
+  cursor: pointer;
+}
+
+/*Search Card Layout*/
+
+.search__books--wrapper {
+  position: absolute;
+  overflow-x: hidden;
+  top: calc(100% + 8px); 
+  left: 0;
+  width: 100%; 
+  background: white;
+  border: 1px solid #e1e7e8;
+  border-radius: 4px;  
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.search__book--link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 153.6px;
+  padding: 16px;
+  gap: 16px;
+  background: white;
+  text-decoration: none;
+  border-bottom: 1px solid #e1e7ea;
+  transition: background 0.2s ease;
+  box-sizing: border-box;
+}
+
+.search__book--link:hover {
+  background: #f1f6f4;
+}
+
+.book__image--wrapper {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.book__image--wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.search__book--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;  
+  overflow: hidden;  
+}
+
+.search__book--title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #032b2f;
+  margin-bottom: 4px;
+}
+
+.search__book--author {
+  font-size: 16px;
+  color: #6b757b;
+  margin-bottom: 8px;
+}
+
+.search__book--duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #6b757b;
+}
+
+/* 1. Define the Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+/* 2. The Base Skeleton Style */
+.skeleton__base {
+  background: #f6f7f8;
+  background-image: linear-gradient(
+    90deg, 
+    #f6f7f8 0%, 
+    #edeef1 20%, 
+    #f6f7f8 40%, 
+    #f6f7f8 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 104px; /* Ensure gradient is large enough to move */
+  display: inline-block;
+  position: relative;
+  animation: shimmer 1.2s linear infinite forwards;
+}
+
+/* 3. Layout for the Skeleton Card */
+.skeleton__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 153.6px;
+  padding: 16px;
+  gap: 12px;
+  border-bottom: 1px solid #e1e7ea;
+}
+
+.skeleton__image {
+  width: 120px;
+  height: 120px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.skeleton__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton__text {
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skeleton__title { width: 80%; }
+.skeleton__author { width: 50%; height: 14px; }
+.skeleton__meta { width: 30%; height: 12px; }
