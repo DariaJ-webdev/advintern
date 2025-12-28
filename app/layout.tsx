@@ -8,6 +8,7 @@ import Sidebar from '../components/Sidebar';
 import MainWrapper from '../components/MainWrapper';
 import styles from '../app/Sidebar.module.css';
 import Navbar from '../components/Navbar';
+import { Suspense } from 'react';
 
 
 
@@ -36,7 +37,9 @@ export default function RootLayout({
           <AuthProvider>
             <AuthModal />
             <div className={styles['app-wrapper']}>
-              <Sidebar />
+              <Suspense fallback={<div style={{ width: '200px' }} />}>
+                <Sidebar />
+              </Suspense>
                 <MainWrapper>
                  <Navbar/>
                 {children}

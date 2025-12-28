@@ -15,6 +15,7 @@ import { useSearchParams } from 'next/navigation';
 import { AiOutlineClockCircle, AiOutlineStar } from 'react-icons/ai';
 import BookDuration from './BookDuration';
 
+
 const ForYouPage = () => {
   const [selectedBook, setSelectedBook] = useState<BookUI | null>(null);
   const [recommendedBooks, setRecommendedBooks] = useState<BookUI[]>([]);
