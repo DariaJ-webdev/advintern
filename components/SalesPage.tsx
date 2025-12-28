@@ -63,48 +63,59 @@ const SalesPage: React.FC = () => {
   };
 
   const handleCheckout = async (): Promise<void> => {
-    if (!user) {
-      openModal();
-      return;
-    }
+  if (!user || user.isAnonymous) {
+    openModal(); // Or redirect to signup
+    return;
+  }
 
-    const planToPurchase = plans.find(p => p.id === selectedPlan);
-    if (!planToPurchase) return;
 
-    try {
-      // Create the checkout session directly
-      const docRef = await addDoc(
-        collection(db, 'customers', user.uid, 'checkout_sessions'),
-        {
-          price: planToPurchase.priceId,
-          success_url: `${window.location.origin}/settings`,
-          cancel_url: `${window.location.origin}/choose-plan`,
-          trial_period_days: selectedPlan === 'yearly' ? 7 : undefined,
-        }
-      );
+    const priceId =
+    selectedPlan === "yearly"
+      ? "price_1Sj5TfA2Cwzhc0rRuqElbN70"
+      : "price_1Sj5UqA2Cwzhc0rRzsiSIcwb";
+
+      // Build checkout data safely
+      const checkoutData: {
+        price: string;
+        success_url: string;
+        cancel_url: string;
+        trial_period_days?: number;
+      } = {
+        price: priceId,
+        success_url: `${window.location.origin}/settings`,
+        cancel_url: `${window.location.origin}/choose-plan`,
+      };
+
+      // ONLY add trial if yearly
+     if (selectedPlan === "yearly") {
+        checkoutData.trial_period_days = 7;
+      }
+
+      try {
+        const docRef = await addDoc(
+          collection(db, "customers", user.uid, "checkout_sessions"),
+          checkoutData
+        );
 
       // Listen for the session URL
       onSnapshot(docRef, (snap) => {
-        const data = snap.data();
+          const data = snap.data();
 
-        if (data?.error) {
-          const errorMessage = typeof data.error === 'string' 
-            ? data.error 
-            : data.error?.message || 'An error occurred with checkout';
-          console.error(`Stripe Error:`, data.error);
-          alert(`Error: ${errorMessage}`);
-          return;
-        }
+          if (data?.error) {
+            console.error("Stripe Error:", data.error);
+            alert(data.error.message || "Checkout failed");
+            return;
+          }
 
-        if (data?.url) {
-          window.location.assign(data.url);
-        }
-      });
-    } catch (err) {
-      console.error('Failed to create checkout session', err);
-      alert('Failed to start checkout. Please try again.');
-    }
-  };
+          if (data?.url) {
+            window.location.assign(data.url);
+          }
+        });
+      } catch (error) {
+        console.error("Checkout error:", error);
+        alert("Failed to start checkout. Please try again.");
+      }
+    };
 
   return (
     <div style={{ position:'absolute', width:'100%', maxWidth: '100vw', margin: 0, padding: 0, boxSizing: 'border-box', overflow: 'hidden' }}>
