@@ -7,7 +7,7 @@ import { RiPlantFill } from 'react-icons/ri';
 import { FaFileAlt, FaHandshake, FaChevronDown } from "react-icons/fa";
 import {useAuth} from '../lib/authContext';
 import { db } from '../lib/firebase/init';
-import { collection, addDoc, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, doc, setDoc } from 'firebase/firestore';
 
 type Plan = {
   id: "monthly" | "yearly";
@@ -92,13 +92,19 @@ const SalesPage: React.FC = () => {
       }
 
       try {
+        // FIRST: Ensure customer document exists
+        const customerRef = doc(db, "customers", user.uid);
+        await setDoc(customerRef, {
+          email: user.email,
+        }, { merge: true });
+
         const docRef = await addDoc(
           collection(db, "customers", user.uid, "checkout_sessions"),
           checkoutData
         );
 
-      // Listen for the session URL
-      onSnapshot(docRef, (snap) => {
+        // Listen for the session URL
+        onSnapshot(docRef, (snap) => {
           const data = snap.data();
 
           if (data?.error) {
